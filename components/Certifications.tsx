@@ -101,23 +101,14 @@ export default function Certifications() {
                   )}
                 </div>
 
-                {/* Card Footer: Year badge & full view link */}
-                <div className="mt-5 pt-3.5 border-t border-[#1c2030]/80 flex items-center justify-between">
-                  {cert.year && (
+                {/* Card Footer: Year badge */}
+                {cert.year && (
+                  <div className="mt-5 pt-3.5 border-t border-[#1c2030]/80 flex items-center justify-between">
                     <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono text-slate-400 bg-[#141724] border border-[#23283c]">
                       {cert.year}
                     </span>
-                  )}
-                  <a
-                    href={cert.image}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-medium text-cyan-400/90 hover:text-cyan-300 flex items-center gap-1 transition-colors group-hover:translate-x-0.5"
-                  >
-                    <span>Inspect</span>
-                    <ExternalLink size={12} />
-                  </a>
-                </div>
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}

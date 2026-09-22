@@ -50,6 +50,12 @@ function ProjectDetailModal({
   project: Project;
   onClose: () => void;
 }) {
+  const [imgErr, setImgErr] = useState(false);
+
+  useEffect(() => {
+    setImgErr(false);
+  }, [project.image]);
+
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -102,6 +108,31 @@ function ProjectDetailModal({
         <p className="text-sm font-medium text-blue-400 mb-5">
           {project.tagline}
         </p>
+
+        {/* ── Project Preview Image in Detailed View ── */}
+        {project.image && !imgErr && (
+          <div className="relative w-full aspect-[16/9] sm:aspect-[16/10] max-h-80 rounded-xl overflow-hidden bg-[#06070b] border border-[#1f2230] mb-6 group">
+            <Image
+              src={project.image}
+              alt={`${project.name} preview`}
+              fill
+              unoptimized
+              className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.02]"
+              onError={() => setImgErr(true)}
+            />
+            {/* Direct full-view link */}
+            <a
+              href={project.image}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Open full-resolution screenshot"
+              className="absolute top-2.5 right-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-sm border border-cyan-500/40 text-[11px] font-mono text-cyan-300 flex items-center gap-1 shadow-md cursor-pointer"
+            >
+              <span>View Full</span>
+              <ExternalLink size={11} />
+            </a>
+          </div>
+        )}
 
         {/* Full description */}
         <div className="mb-6 pb-6 border-b border-[#1f2230]">
