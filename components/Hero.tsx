@@ -143,27 +143,27 @@ export default function Hero() {
             transition={{ duration: 0.9, delay: 0.25, ease }}
           >
             <div className="relative flex items-center justify-center">
-              {/* Subtle ambient light bloom behind the subject */}
+              {/* Cinematic ambient aura bloom behind the subject */}
               <div
                 className="absolute inset-0 pointer-events-none rounded-full"
                 style={{
                   background:
-                    "radial-gradient(circle at center 42%, rgba(59,130,246,0.22) 0%, rgba(6,182,212,0.12) 40%, transparent 72%)",
-                  filter: "blur(48px)",
-                  transform: "scale(1.2)",
+                    "radial-gradient(ellipse at 50% 40%, rgba(59,130,246,0.28) 0%, rgba(6,182,212,0.18) 35%, rgba(147,51,234,0.08) 60%, transparent 75%)",
+                  filter: "blur(54px)",
+                  transform: "scale(1.25)",
                 }}
               />
 
-              {/* Natural cutout portrait with subtle bottom fade */}
+              {/* Seamlessly blended studio portrait */}
               <div
                 className="relative overflow-hidden pointer-events-none"
                 style={{
-                  width: "clamp(280px, 34vw, 400px)",
+                  width: "clamp(300px, 36vw, 420px)",
                   aspectRatio: "3/4",
                   maskImage:
-                    "linear-gradient(to bottom, black 70%, transparent 100%)",
+                    "radial-gradient(ellipse 80% 72% at 50% 38%, black 42%, rgba(0, 0, 0, 0.82) 58%, rgba(0, 0, 0, 0.25) 76%, transparent 96%)",
                   WebkitMaskImage:
-                    "linear-gradient(to bottom, black 70%, transparent 100%)",
+                    "radial-gradient(ellipse 80% 72% at 50% 38%, black 42%, rgba(0, 0, 0, 0.82) 58%, rgba(0, 0, 0, 0.25) 76%, transparent 96%)",
                 }}
               >
                 {!imgError ? (
@@ -176,7 +176,19 @@ export default function Hero() {
                       priority
                       onError={() => setImgError(true)}
                     />
-                    <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#09090b] to-transparent pointer-events-none" />
+                    {/* Deep bottom fade so torso dissolves into pure darkness */}
+                    <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#09090b] via-[#09090b]/80 to-transparent pointer-events-none" />
+                    {/* Soft side edge feathering to eliminate any crop line */}
+                    <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#09090b]/80 via-[#09090b]/30 to-transparent pointer-events-none" />
+                    <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#09090b]/80 via-[#09090b]/30 to-transparent pointer-events-none" />
+                    {/* Subtle vignette layer */}
+                    <div
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        background:
+                          "radial-gradient(ellipse 82% 76% at 50% 36%, transparent 48%, #09090b 95%)",
+                      }}
+                    />
                   </>
                 ) : (
                   <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
