@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, ChevronRight } from "lucide-react";
+import { Mail, ChevronRight, Download } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/Icons";
-import { profile } from "@/data/profile";
+import { profile, resumes } from "@/data/profile";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -105,10 +105,20 @@ export default function Hero() {
             </motion.p>
 
             {/* CTAs */}
-            <motion.div {...fade(0.6)} className="flex flex-wrap gap-3.5 mt-1">
+            <motion.div {...fade(0.6)} className="flex flex-wrap items-center gap-3.5 mt-1">
               <button onClick={() => scrollTo("contact")} className="btn-primary">
                 Contact Me
               </button>
+              <a
+                href={resumes.find((r) => r.primary)?.file || resumes[0].file}
+                target="_blank"
+                rel="noopener noreferrer"
+                download="Dhruv_Rathi_Resume.pdf"
+                className="btn-secondary inline-flex items-center gap-2"
+              >
+                <Download size={15} className="text-blue-400" />
+                Download Resume
+              </a>
               <button onClick={() => scrollTo("projects")} className="btn-secondary">
                 View Projects <ChevronRight size={15} className="text-blue-400" />
               </button>
@@ -135,7 +145,7 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* ── Right: Natural Cutout Portrait (Restored clean previous state) ── */}
+          {/* ── Right: Seamlessly Integrated Studio Portrait ── */}
           <motion.div
             className="flex justify-center lg:justify-end"
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -143,68 +153,71 @@ export default function Hero() {
             transition={{ duration: 0.9, delay: 0.25, ease }}
           >
             <div className="relative flex items-center justify-center">
-              {/* Cinematic ambient aura bloom behind the subject */}
+              {/* Cinematic ambient backlight bloom */}
               <div
                 className="absolute inset-0 pointer-events-none rounded-full"
                 style={{
                   background:
-                    "radial-gradient(ellipse at 50% 40%, rgba(59,130,246,0.28) 0%, rgba(6,182,212,0.18) 35%, rgba(147,51,234,0.08) 60%, transparent 75%)",
-                  filter: "blur(54px)",
-                  transform: "scale(1.25)",
+                    "radial-gradient(ellipse 70% 60% at 50% 40%, rgba(59,130,246,0.25) 0%, rgba(6,182,212,0.14) 40%, rgba(147,51,234,0.06) 65%, transparent 80%)",
+                  filter: "blur(50px)",
+                  transform: "scale(1.3)",
                 }}
               />
 
-              {/* Seamlessly blended studio portrait */}
+              {/* Vertical progressive mask to dissolve bottom */}
               <div
-                className="relative overflow-hidden pointer-events-none"
+                className="relative pointer-events-none select-none"
                 style={{
-                  width: "clamp(300px, 36vw, 420px)",
+                  width: "clamp(310px, 38vw, 440px)",
                   aspectRatio: "3/4",
                   maskImage:
-                    "radial-gradient(ellipse 80% 72% at 50% 38%, black 42%, rgba(0, 0, 0, 0.82) 58%, rgba(0, 0, 0, 0.25) 76%, transparent 96%)",
+                    "linear-gradient(to bottom, black 0%, black 40%, rgba(0, 0, 0, 0.75) 58%, rgba(0, 0, 0, 0.2) 74%, transparent 88%)",
                   WebkitMaskImage:
-                    "radial-gradient(ellipse 80% 72% at 50% 38%, black 42%, rgba(0, 0, 0, 0.82) 58%, rgba(0, 0, 0, 0.25) 76%, transparent 96%)",
+                    "linear-gradient(to bottom, black 0%, black 40%, rgba(0, 0, 0, 0.75) 58%, rgba(0, 0, 0, 0.2) 74%, transparent 88%)",
                 }}
               >
-                {!imgError ? (
-                  <>
-                    <Image
-                      src={profile.photo}
-                      alt="Dhruv Rathi"
-                      fill
-                      className="object-contain object-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
-                      priority
-                      onError={() => setImgError(true)}
-                    />
-                    {/* Deep bottom fade so torso dissolves into pure darkness */}
-                    <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#09090b] via-[#09090b]/80 to-transparent pointer-events-none" />
-                    {/* Soft side edge feathering to eliminate any crop line */}
-                    <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#09090b]/80 via-[#09090b]/30 to-transparent pointer-events-none" />
-                    <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#09090b]/80 via-[#09090b]/30 to-transparent pointer-events-none" />
-                    {/* Subtle vignette layer */}
-                    <div
-                      className="absolute inset-0 pointer-events-none"
-                      style={{
-                        background:
-                          "radial-gradient(ellipse 82% 76% at 50% 36%, transparent 48%, #09090b 95%)",
-                      }}
-                    />
-                  </>
-                ) : (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                    <div
-                      className="w-20 h-20 rounded-2xl flex items-center justify-center text-2xl font-bold mb-3 shadow-[0_0_24px_rgba(59,130,246,0.25)]"
-                      style={{
-                        background: "rgba(59,130,246,0.12)",
-                        border: "1px solid rgba(59,130,246,0.35)",
-                        color: "#60a5fa",
-                        fontFamily: "var(--font-heading)",
-                      }}
-                    >
-                      DR
+                {/* Horizontal side-softener mask to eliminate cut lines */}
+                <div
+                  className="w-full h-full relative"
+                  style={{
+                    maskImage:
+                      "linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.7) 12%, black 22%, black 78%, rgba(0, 0, 0, 0.7) 88%, transparent 100%)",
+                    WebkitMaskImage:
+                      "linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.7) 12%, black 22%, black 78%, rgba(0, 0, 0, 0.7) 88%, transparent 100%)",
+                  }}
+                >
+                  {!imgError ? (
+                    <>
+                      <Image
+                        src={profile.photo}
+                        alt="Dhruv Rathi"
+                        fill
+                        className="object-contain object-bottom"
+                        priority
+                        onError={() => setImgError(true)}
+                      />
+                      {/* Deep bottom fade into page background */}
+                      <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#09090b] via-[#09090b]/85 to-transparent pointer-events-none" />
+                      {/* Side feathering layers to soften edges */}
+                      <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#09090b] via-[#09090b]/60 to-transparent pointer-events-none" />
+                      <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#09090b] via-[#09090b]/60 to-transparent pointer-events-none" />
+                    </>
+                  ) : (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                      <div
+                        className="w-20 h-20 rounded-2xl flex items-center justify-center text-2xl font-bold mb-3 shadow-[0_0_24px_rgba(59,130,246,0.25)]"
+                        style={{
+                          background: "rgba(59,130,246,0.12)",
+                          border: "1px solid rgba(59,130,246,0.35)",
+                          color: "#60a5fa",
+                          fontFamily: "var(--font-heading)",
+                        }}
+                      >
+                        DR
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </div>
           </motion.div>
