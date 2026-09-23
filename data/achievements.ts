@@ -66,7 +66,7 @@ export const achievements: Achievement[] = [
     title: "Adobe University Hackathon 2026",
     subtitle: "Among the top 416 teams out the 301,066",
     description:
-      "Selected among 416 teams out of 301,066 global participants. Ranked in the top 0.14% of all competing teams worldwide.",
+      "Selected among 416 teams out of 301,066 global participants. Ranked in the top 0.14% of all competing teams nation-wide.",
     metric: "Top 0.14%",
     metricLabel: "Global Percentile",
     highlight: true,

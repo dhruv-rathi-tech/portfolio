@@ -223,9 +223,8 @@ function ProjectDetailModal({
   );
 }
 
-// ── Desktop/Tablet Stacked Card ──
-// Header displays project number and title clearly so stacked cards show readable titles!
-function StackedProjectCard({
+// ── Responsive Project Card (Full desktop aesthetic on both mobile and desktop) ──
+function ProjectCard({
   project,
   index,
   total,
@@ -236,14 +235,13 @@ function StackedProjectCard({
   total: number;
   onOpenDetails: (p: Project) => void;
 }) {
-  // Sticky header offset: 80px base + 48px per stacked card header
+  // Sticky offset on desktop/tablet: 80px base + 48px per stacked card header
   const stickyTop = 80 + index * 48;
 
   return (
     <div
-      className="sticky mb-6 transition-all duration-300"
+      className="relative md:sticky mb-5 md:mb-6 transition-all duration-300"
       style={{
-        top: `${stickyTop}px`,
         zIndex: index + 10,
       }}
     >
@@ -267,8 +265,8 @@ function StackedProjectCard({
           el.style.boxShadow = "0 10px 30px rgba(0,0,0,0.6)";
         }}
       >
-        {/* ── Fixed 48px Stack Header: Displays Number & Title Clearly When Collapsed ── */}
-        <div className="h-12 px-5 sm:px-6 flex items-center justify-between border-b border-[#1f2230] bg-[#12141f]">
+        {/* ── Card Header: Displays Title Clearly ── */}
+        <div className="h-12 px-4 sm:px-6 flex items-center justify-between border-b border-[#1f2230] bg-[#12141f]">
           <div className="flex items-center min-w-0">
             <h3 className="text-sm sm:text-base font-bold text-white group-hover:text-blue-300 transition-colors tracking-tight truncate">
               {project.name}
@@ -286,22 +284,27 @@ function StackedProjectCard({
           </div>
         </div>
 
-        {/* ── Card Body (covered when subsequent card stacks over this one) ── */}
-        <div className="p-5 sm:p-6 flex flex-col md:flex-row gap-6 items-start justify-between">
+        {/* ── Card Body: Rich content with preview, metrics & actions ── */}
+        <div className="p-4 sm:p-6 flex flex-col md:flex-row gap-5 sm:gap-6 items-start justify-between">
+          {/* Mobile Thumbnail on top */}
+          <div className="w-full md:hidden h-44 rounded-xl overflow-hidden mb-1">
+            <ProjectThumbnail project={project} />
+          </div>
+
           {/* Left Content */}
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 w-full">
             <p className="text-xs font-medium text-blue-400 mb-1.5">
               {project.tagline}
             </p>
 
-            {/* Truncated description with subtle ellipsis */}
-            <p className="text-sm text-slate-400 leading-relaxed line-clamp-2 max-w-2xl mb-4">
+            {/* Truncated description */}
+            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed line-clamp-3 md:line-clamp-2 max-w-2xl mb-4">
               {project.description}
             </p>
 
             {/* Metrics pills if present */}
             {project.metrics && (
-              <div className="flex flex-wrap gap-2.5 mb-4">
+              <div className="flex flex-wrap gap-2 mb-4">
                 {project.metrics.map((m) => (
                   <div
                     key={m.label}
@@ -315,7 +318,7 @@ function StackedProjectCard({
             )}
 
             {/* Technology tags & direct links */}
-            <div className="flex flex-wrap gap-2 items-center justify-between mt-2 pt-2 border-t border-[#1a1d29]/60">
+            <div className="flex flex-col sm:flex-row gap-3 sm:items-center justify-between mt-2 pt-2 border-t border-[#1a1d29]/60">
               <div className="flex flex-wrap gap-1.5 items-center">
                 {project.technologies.slice(0, 5).map((t) => (
                   <span
@@ -333,7 +336,7 @@ function StackedProjectCard({
                 )}
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 self-end sm:self-auto">
                 {project.demo && (
                   <a
                     href={project.demo}
@@ -355,7 +358,7 @@ function StackedProjectCard({
                     className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors"
                   >
                     <GithubIcon size={14} />
-                    <span className="hidden sm:inline">Code</span>
+                    <span className="inline">Code</span>
                   </a>
                 )}
                 <span className="text-xs text-blue-400 font-medium group-hover:text-blue-300 flex items-center gap-1 transition-colors">
@@ -365,8 +368,8 @@ function StackedProjectCard({
             </div>
           </div>
 
-          {/* Right: Contained clean thumbnail */}
-          <div className="hidden sm:block shrink-0 w-44 h-28 self-center rounded-xl overflow-hidden">
+          {/* Desktop: Contained clean thumbnail */}
+          <div className="hidden md:block shrink-0 w-44 h-28 self-center rounded-xl overflow-hidden">
             <ProjectThumbnail project={project} />
           </div>
         </div>
@@ -375,133 +378,23 @@ function StackedProjectCard({
   );
 }
 
-// ── Mobile View: Expandable Clean Cards ──
-function MobileProjectCards({
-  projects,
-  onOpenDetails,
-}: {
-  projects: Project[];
-  onOpenDetails: (p: Project) => void;
-}) {
-  const [openId, setOpenId] = useState<string | null>(projects[0]?.id ?? null);
-
-  return (
-    <div className="space-y-3.5">
-      {projects.map((p, i) => {
-        const isOpen = openId === p.id;
-        return (
-          <div
-            key={p.id}
-            className="rounded-2xl border overflow-hidden transition-colors"
-            style={{
-              background: "#0d0e15",
-              borderColor: isOpen ? "rgba(59, 130, 246, 0.4)" : "#1f2230",
-            }}
-          >
-            <button
-              className="w-full flex items-center justify-between p-4 text-left cursor-pointer"
-              onClick={() => setOpenId(isOpen ? null : p.id)}
-            >
-              <div className="min-w-0 pr-3 flex items-center">
-                <h3 className="text-sm font-bold text-white truncate">{p.name}</h3>
-              </div>
-              <ChevronDown
-                size={16}
-                className="text-slate-400 shrink-0 transition-transform duration-200"
-                style={{ transform: isOpen ? "rotate(180deg)" : "none" }}
-              />
-            </button>
-
-            <AnimatePresence>
-              {isOpen && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="overflow-hidden"
-                >
-                  <div className="px-4 pb-4 pt-1 border-t border-[#1f2230] space-y-3">
-                    <p className="text-xs text-slate-300 leading-relaxed">{p.description}</p>
-
-                    <div className="flex flex-wrap gap-1.5">
-                      {p.technologies.map((t) => (
-                        <span key={t} className="tag text-[10px]">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      {p.demo && (
-                        <a
-                          href={p.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold text-cyan-300 bg-cyan-500/10 border border-cyan-500/30 flex-1"
-                        >
-                          <ExternalLink size={13} />
-                          <span>Live Demo</span>
-                        </a>
-                      )}
-                      {p.github && (
-                        <a
-                          href={p.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold text-slate-300 bg-[#161926] border border-[#2d3246] flex-1"
-                        >
-                          <GithubIcon size={13} />
-                          <span>Code</span>
-                        </a>
-                      )}
-                      <button
-                        onClick={() => onOpenDetails(p)}
-                        className="btn-primary text-xs px-4 py-2 justify-center"
-                      >
-                        Details
-                      </button>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
 // ── Main Export ──
 export default function ProjectShowcase({ projects }: { projects: Project[] }) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   return (
     <div>
-      {isMobile ? (
-        <MobileProjectCards projects={projects} onOpenDetails={setSelectedProject} />
-      ) : (
-        <div className="relative pb-16">
-          {projects.map((project, idx) => (
-            <StackedProjectCard
-              key={project.id}
-              project={project}
-              index={idx}
-              total={projects.length}
-              onOpenDetails={setSelectedProject}
-            />
-          ))}
-        </div>
-      )}
+      <div className="relative pb-12 sm:pb-16">
+        {projects.map((project, idx) => (
+          <ProjectCard
+            key={project.id}
+            project={project}
+            index={idx}
+            total={projects.length}
+            onOpenDetails={setSelectedProject}
+          />
+        ))}
+      </div>
 
       {/* Details Modal Dialog */}
       <AnimatePresence>

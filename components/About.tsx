@@ -45,7 +45,7 @@ export default function About() {
             return (
               <p
                 key={pi}
-                className="text-base sm:text-lg leading-relaxed text-slate-300"
+                className="text-sm sm:text-sm leading-relaxed text-slate-300"
               >
                 {words.map((word) => {
                   const currentIdx = wordCounter++;

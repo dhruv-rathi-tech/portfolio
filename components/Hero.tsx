@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, ChevronRight, Download } from "lucide-react";
+import { Mail, ChevronRight, Download, ChevronDown, FileText } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/Icons";
 import { profile, resumes } from "@/data/profile";
 
@@ -19,6 +19,8 @@ export default function Hero() {
   const [roleIdx, setRoleIdx] = useState(0);
   const [ready, setReady] = useState(false);
   const [imgError, setImgError] = useState(false);
+  const [resumeOpen, setResumeOpen] = useState(false);
+  const resumeMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setReady(true);
@@ -27,6 +29,16 @@ export default function Hero() {
   useEffect(() => {
     const id = setInterval(() => setRoleIdx((i) => (i + 1) % profile.roles.length), 3200);
     return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (resumeMenuRef.current && !resumeMenuRef.current.contains(e.target as Node)) {
+        setResumeOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const scrollTo = (id: string) =>
@@ -105,20 +117,70 @@ export default function Hero() {
             </motion.p>
 
             {/* CTAs */}
-            <motion.div {...fade(0.6)} className="flex flex-wrap items-center gap-3.5 mt-1">
+            <motion.div {...fade(0.6)} className="flex flex-wrap items-center gap-3.5 mt-1 relative z-20">
               <button onClick={() => scrollTo("contact")} className="btn-primary">
                 Contact Me
               </button>
-              <a
-                href={resumes.find((r) => r.primary)?.file || resumes[0].file}
-                target="_blank"
-                rel="noopener noreferrer"
-                download="Dhruv_Rathi_Resume.pdf"
-                className="btn-secondary inline-flex items-center gap-2"
-              >
-                <Download size={15} className="text-blue-400" />
-                Download Resume
-              </a>
+
+              {/* Download Resume with 3 options dropdown */}
+              <div className="relative" ref={resumeMenuRef}>
+                <button
+                  type="button"
+                  onClick={() => setResumeOpen((v) => !v)}
+                  className="btn-secondary inline-flex items-center gap-2 cursor-pointer"
+                  aria-expanded={resumeOpen}
+                  aria-haspopup="menu"
+                >
+                  <Download size={15} className="text-blue-400" />
+                  <span>Download Resume</span>
+                  <ChevronDown
+                    size={14}
+                    className="text-slate-400 transition-transform duration-200"
+                    style={{ transform: resumeOpen ? "rotate(180deg)" : "none" }}
+                  />
+                </button>
+
+                <AnimatePresence>
+                  {resumeOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 6, scale: 0.96 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 6, scale: 0.96 }}
+                      transition={{ duration: 0.18 }}
+                      className="absolute top-full left-0 mt-2 py-1.5 rounded-xl border shadow-2xl z-50 min-w-[240px] sm:min-w-[260px] overflow-hidden"
+                      style={{
+                        background: "#0d0e15",
+                        borderColor: "#1f2230",
+                        boxShadow: "0 20px 40px rgba(0,0,0,0.8), 0 0 20px rgba(59,130,246,0.15)",
+                      }}
+                      role="menu"
+                    >
+                      <div className="px-3 py-1.5 text-[10px] font-semibold text-slate-500 uppercase tracking-wider border-b border-[#1f2230]">
+                        Choose Resume Track
+                      </div>
+                      {resumes.map((r) => (
+                        <a
+                          key={r.label}
+                          href={r.file}
+                          download
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setResumeOpen(false)}
+                          className="flex items-center justify-between px-3.5 py-2.5 text-xs text-slate-300 hover:text-white hover:bg-blue-500/10 transition-colors group cursor-pointer"
+                          role="menuitem"
+                        >
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <FileText size={14} className="text-blue-400 shrink-0" />
+                            <span className="truncate">{r.label}</span>
+                          </div>
+                          <Download size={13} className="text-slate-500 group-hover:text-blue-400 transition-colors shrink-0 ml-2" />
+                        </a>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
               <button onClick={() => scrollTo("projects")} className="btn-secondary">
                 View Projects <ChevronRight size={15} className="text-blue-400" />
               </button>
