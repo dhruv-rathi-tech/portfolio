@@ -40,7 +40,7 @@ export const projects: Project[] = [
   },
   {
     id: "2",
-    name: "Agentic Trip Planner",
+    name: "TripPilot - Agentic Trip Planner",
     slug: "agentic-trip-planner",
     tagline: "LLM-powered agentic system that orchestrates multiple tools and APIs to generate travel plans.",
     description:
@@ -56,7 +56,7 @@ export const projects: Project[] = [
       "Deterministic validation of LLM-generated travel plans",
     ],
     github: "https://github.com/dhruv-rathi-tech/agentic-trip-planner",
-    image: "/images/projects/agentic-trip-planner.png",
+    image: "/images/projects/trippilot.png",
   },
   {
     id: "3",
@@ -86,7 +86,7 @@ export const projects: Project[] = [
   },
   {
     id: "4",
-    name: "Enterprise Invoice Payment Forecasting",
+    name: "PayCast - Enterprise Invoice Payment Forecasting",
     slug: "invoice-forecasting",
     tagline: "ML pipeline predicting invoice payment timelines across 50,000+ B2B transactions.",
     description:
