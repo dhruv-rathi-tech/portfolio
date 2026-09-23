@@ -36,7 +36,7 @@ export const projects: Project[] = [
       "Contractual document RAG with information extraction",
     ],
     github: "https://github.com/dhruv-rathi-tech/document-chatbot",
-    image: "/images/projects/hybrid-rag-chatbot.png",
+    image: "/images/projects/docmate.png",
   },
   {
     id: "2",
