@@ -40,23 +40,3 @@ prompt.md
 CLAUDE.md
 walkthrough.md
 
-# Personal assets: PDFs & Resumes
-*.pdf
-/resume/
-/resumes/
-/public/resumes/*
-!/public/resumes/.gitkeep
-
-# Personal assets: Images & Certificates (Never commit personal media)
-*.png
-*.jpg
-*.jpeg
-*.webp
-*.gif
-/public/certificates/*
-!/public/certificates/.gitkeep
-/public/images/*
-!/public/images/.gitkeep
-!/public/images/projects/
-/public/images/projects/*
-!/public/images/projects/.gitkeep
