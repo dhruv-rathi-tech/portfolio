@@ -224,7 +224,7 @@ function ProjectDetailModal({
 }
 
 // ── Responsive Project Card (Full desktop aesthetic on both mobile and desktop) ──
-function ProjectCard({
+function StackedProjectCard({
   project,
   index,
   total,
@@ -235,13 +235,14 @@ function ProjectCard({
   total: number;
   onOpenDetails: (p: Project) => void;
 }) {
-  // Sticky offset on desktop/tablet: 80px base + 48px per stacked card header
+  // Sticky offset: 80px base + 48px per stacked card header
   const stickyTop = 80 + index * 48;
 
   return (
     <div
-      className="relative md:sticky mb-5 md:mb-6 transition-all duration-300"
+      className="sticky mb-6 transition-all duration-300"
       style={{
+        top: `${stickyTop}px`,
         zIndex: index + 10,
       }}
     >
@@ -384,9 +385,9 @@ export default function ProjectShowcase({ projects }: { projects: Project[] }) {
 
   return (
     <div>
-      <div className="relative pb-12 sm:pb-16">
+      <div className="relative pb-24 sm:pb-32">
         {projects.map((project, idx) => (
-          <ProjectCard
+          <StackedProjectCard
             key={project.id}
             project={project}
             index={idx}

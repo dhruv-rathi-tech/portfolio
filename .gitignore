@@ -36,7 +36,5 @@ yarn-error.log*
 
 # Scratch & temporary workspace files
 /scratch/
-prompt.md
 CLAUDE.md
 walkthrough.md
-
