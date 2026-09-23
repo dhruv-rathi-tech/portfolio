@@ -12,14 +12,14 @@ export interface Project {
   metrics?: { label: string; value: string }[];
   github?: string;
   demo?: string;
-  image?: string; // Place screenshot at /public/images/projects/<slug>.png
+  image?: string;
   logo?: string;
 }
 
 export const projects: Project[] = [
   {
     id: "1",
-    name: "DocMate - Multi-Format Document Assistant",
+    name: "DocMate – Multi-Format Document Assistant",
     slug: "hybrid-rag-chatbot",
     tagline: "Full-stack RAG assistant supporting multi-format document parsing for high-fidelity, context-aware Q&A.",
     description:
@@ -40,7 +40,7 @@ export const projects: Project[] = [
   },
   {
     id: "2",
-    name: "TripPilot - Agentic Trip Planner",
+    name: "TripPilot – Agentic Trip Planner",
     slug: "agentic-trip-planner",
     tagline: "LLM-powered agentic system that orchestrates multiple tools and APIs to generate travel plans.",
     description:
@@ -60,7 +60,7 @@ export const projects: Project[] = [
   },
   {
     id: "3",
-    name: "AI vs Real Image Classifier",
+    name: "SynthLens – AI Image Detection",
     slug: "ai-image-classifier",
     tagline: "Attention-based deep learning system for distinguishing AI-generated images from real photographs.",
     description:
@@ -81,12 +81,12 @@ export const projects: Project[] = [
       { label: "AUC-ROC", value: "0.9748" },
       { label: "Test F1-Score", value: "0.94" },
     ],
-    github: "https://github.com/dhruv-rathi-tech/ai-vs-real-image-classifier",
-    image: "/images/projects/ai-image-classifier.png",
+    github: "https://github.com/dhruv-rathi-tech/ai-image-detection",
+    image: "/images/projects/synthlens.png",
   },
   {
     id: "4",
-    name: "PayCast - Enterprise Invoice Payment Forecasting",
+    name: "PayCast – Enterprise Invoice Payment Forecasting",
     slug: "invoice-forecasting",
     tagline: "ML pipeline predicting invoice payment timelines across 50,000+ B2B transactions.",
     description:
@@ -107,7 +107,7 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/dhruv-rathi-tech/invoice-payment-forecasting",
     demo: "https://invoicepaymentforecasting.streamlit.app",
-    image: "/images/projects/invoice-forecasting.png",
+    image: "/images/projects/paycast.png",
   },
   {
     id: "5",
