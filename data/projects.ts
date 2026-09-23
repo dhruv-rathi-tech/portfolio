@@ -19,9 +19,9 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "1",
-    name: "Hybrid-RAG Document Chatbot",
+    name: "DocMate - Multi-Format Document Assistant",
     slug: "hybrid-rag-chatbot",
-    tagline: "Context-aware document Q&A with hybrid retrieval and cross-encoder reranking.",
+    tagline: "Full-stack RAG assistant supporting multi-format document parsing for high-fidelity, context-aware Q&A.",
     description:
       "A full-stack document chatbot that combines dense vector search with BM25 sparse retrieval for high-accuracy document Q&A. Built with LangChain, FastAPI, and ChromaDB, with session-isolated document pipelines that keep each user's context cleanly separated. Supports multi-format document ingestion for seamless knowledge extraction and retrieval.",
     categories: ["AI/GenAI", "Full Stack"],
