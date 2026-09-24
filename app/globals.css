@@ -28,13 +28,17 @@
 
 html { scroll-behavior: smooth; }
 
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
 body {
   background-color: #09090b;
   color: #fafafa;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 ::selection {

@@ -56,8 +56,22 @@ export default function Navbar() {
   }, []);
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const isMobile = mobileOpen;
     setMobileOpen(false);
+
+    const performScroll = () => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(null, "", `#${id}`);
+      setActiveSection(id);
+    };
+
+    if (isMobile) {
+      setTimeout(performScroll, 80);
+    } else {
+      performScroll();
+    }
   };
 
   return (
@@ -78,7 +92,7 @@ export default function Navbar() {
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-base font-bold tracking-tight group flex items-center gap-1"
+            className="text-base font-bold tracking-tight group flex items-center gap-1 cursor-pointer"
             style={{ color: "#fafafa" }}
           >
             <span className="group-hover:text-blue-400 transition-colors">DR</span>
@@ -90,10 +104,14 @@ export default function Navbar() {
             {navLinks.map((link) => {
               const isActive = activeSection === link.href;
               return (
-                <button
+                <a
                   key={link.href}
-                  onClick={() => scrollTo(link.href)}
-                  className="relative px-3 py-1.5 text-xs font-medium rounded-lg transition-all duration-200"
+                  href={`#${link.href}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo(link.href);
+                  }}
+                  className="relative px-3 py-1.5 text-xs font-medium rounded-lg transition-all duration-200 cursor-pointer"
                   style={{
                     color: isActive ? "#ffffff" : "#94a3b8",
                   }}
@@ -113,7 +131,7 @@ export default function Navbar() {
                       transition={{ duration: 0.25 }}
                     />
                   )}
-                </button>
+                </a>
               );
             })}
           </nav>
@@ -209,15 +227,26 @@ export default function Navbar() {
             style={{ background: "rgba(9,9,11,0.98)", borderColor: "#1f2230" }}
           >
             <div className="global-container py-4 space-y-1">
-              {navLinks.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => scrollTo(link.href)}
-                  className="block w-full text-left px-3 py-2 text-sm rounded-lg text-slate-400 hover:text-white hover:bg-blue-500/10 transition-colors"
-                >
-                  {link.label}
-                </button>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href;
+                return (
+                  <a
+                    key={link.href}
+                    href={`#${link.href}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollTo(link.href);
+                    }}
+                    className={`block w-full text-left px-3.5 py-2.5 text-sm rounded-lg transition-colors cursor-pointer ${
+                      isActive
+                        ? "text-white bg-blue-500/15 font-medium border border-blue-500/25"
+                        : "text-slate-300 hover:text-white hover:bg-blue-500/10"
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
               <div className="pt-3 mt-2 border-t border-[#1f2230] space-y-1">
                 <p className="px-3 pb-1 text-xs text-slate-500 uppercase tracking-wider font-semibold">Resumes</p>
                 {resumes.map((r) => (
