@@ -36,7 +36,7 @@ export default function Projects() {
           .filter((p): p is Project => Boolean(p));
 
   return (
-    <section id="projects" className="py-14 sm:py-18" style={{ background: "#09090b" }}>
+    <section id="projects" className="py-14 sm:py-18">
       <div className="global-container">
         {/* Section header & filters */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8 sm:mb-10">

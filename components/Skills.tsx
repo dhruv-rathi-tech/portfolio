@@ -102,7 +102,6 @@ export default function Skills() {
     <section
       id="skills"
       className="py-14 sm:py-18 relative overflow-hidden"
-      style={{ background: "#09090b" }}
     >
       <div className="global-container">
         {/* Section Header */}

@@ -31,7 +31,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-14 sm:py-18 relative overflow-hidden" style={{ background: "#09090b" }}>
+    <section id="contact" className="py-14 sm:py-18 relative overflow-hidden">
       {/* Ambient bottom glow */}
       <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none"

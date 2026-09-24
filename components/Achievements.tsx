@@ -8,7 +8,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="py-14 sm:py-18" style={{ background: "#09090b" }}>
+    <section id="achievements" className="py-14 sm:py-18">
       <div className="global-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

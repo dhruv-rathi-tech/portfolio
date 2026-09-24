@@ -9,7 +9,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="py-16 sm:py-20" style={{ background: "#09090b" }}>
+    <section id="certifications" className="py-16 sm:py-20">
       <div className="global-container">
         {/* Single strong editorial heading — NO small uppercase eyebrow label per instruction */}
         <motion.div

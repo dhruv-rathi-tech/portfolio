@@ -47,7 +47,6 @@ export default function Hero() {
   return (
     <section
       className="relative min-h-[82vh] lg:min-h-[88vh] flex items-center overflow-hidden"
-      style={{ background: "#09090b" }}
     >
       {/* Subtle top ambient radial lighting */}
       <div
