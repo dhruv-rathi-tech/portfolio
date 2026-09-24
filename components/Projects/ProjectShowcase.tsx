@@ -11,6 +11,10 @@ import { Project } from "@/data/projects";
 function ProjectThumbnail({ project }: { project: Project }) {
   const [err, setErr] = useState(false);
 
+  useEffect(() => {
+    setErr(false);
+  }, [project.image]);
+
   if (project.image && !err) {
     return (
       <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#0c0d14] border border-[#1f2230]">
@@ -18,6 +22,7 @@ function ProjectThumbnail({ project }: { project: Project }) {
           src={project.image}
           alt={project.name}
           fill
+          unoptimized
           className="object-cover object-top transition-transform duration-500 hover:scale-105"
           onError={() => setErr(true)}
         />
