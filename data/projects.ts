@@ -180,7 +180,7 @@ export const projects: Project[] = [
     description:
       "A financial analytics system that ingests, transforms, and validates structured financial data to perform multi-factor anomaly detection and risk scoring. Extracts relevant market signals and presents risk patterns through interactive Streamlit dashboards with drill-down analysis and narrative insights.",
     categories: ["Data/Analytics"],
-    technologies: ["Python", "Pandas", "NumPy", "SQL", "Streamlit"],
+    technologies: ["Python", "Pandas", "NumPy", "SQL", "PowerBI"],
     highlights: [
       "End-to-end financial data ingestion, transformation, and validation",
       "Multi-factor anomaly detection across financial metrics",
