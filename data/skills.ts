@@ -60,6 +60,7 @@ export const skillCategories: SkillCategory[] = [
       "ChromaDB",
       "Google Colab",
       "JWT Auth",
+      "Bcrypt",
     ],
   },
 ];

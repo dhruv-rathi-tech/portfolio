@@ -17,11 +17,11 @@ export const experience: ExperienceItem[] = [
     description:
       "Engineered production AI systems across LLM retrieval, agentic workflows, and predictive analytics pipelines for enterprise operations.",
     highlights: [
-      "Built FastAPI backend services and data pipelines for LLM-powered retrieval and forecasting workflows.",
-      "Developed a contractual-document RAG pipeline with citation-aware generation and information extraction.",
-      "Designed modular agentic workflows with tool orchestration for multi-step AI tasks.",
-      "Worked on forecasting workflows across 50,000+ invoice transactions.",
+      "Engineered backend services and data pipelines using Python and FastAPI, integrating vector databases and modular APIs to support scalable AI/LLM workflows.",
+      "Developed Agentic AI workflows with modular tool integration and task orchestration for LLM-driven multi-step task execution and automation.",
+      "Architected a contractual-document RAG pipeline with hybrid retrieval, cross-encoder reranking, and citation-aware LLM generation, prototyped on 100 documents and designed to scale to 1M documents.",
+      "Built predictive data processing and forecasting workflows across 50,000+ enterprise business transactions.",
     ],
-    tags: ["Python", "LLMs", "RAG", "Agentic AI", "FastAPI", "LangChain", "Forecasting", "Data Pipelines"],
+    tags: ["Python", "FastAPI", "LLMs", "RAG", "Agentic AI", "LangChain", "Vector DBs", "Data Pipelines"],
   },
 ];

@@ -25,7 +25,7 @@ export const projects: Project[] = [
     description:
       "A full-stack document chatbot that combines dense vector search with BM25 sparse retrieval for high-accuracy document Q&A. Built with LangChain, FastAPI, and ChromaDB, with session-isolated document pipelines that keep each user's context cleanly separated. Supports multi-format document ingestion for seamless knowledge extraction and retrieval.",
     categories: ["AI/GenAI", "Full Stack"],
-    technologies: ["LangChain", "FastAPI", "ChromaDB", "BM25", "PyTorch", "Python"],
+    technologies: ["LangChain", "FastAPI", "ChromaDB", "BM25", "React", "Python"],
     highlights: [
       "Hybrid retrieval combining dense embeddings and BM25 sparse search",
       "Cross-encoder reranking for precision result ordering",
@@ -35,7 +35,7 @@ export const projects: Project[] = [
       "FastAPI backend with async document ingestion endpoints",
       "Contractual document RAG with information extraction",
     ],
-    github: "https://github.com/dhruv-rathi-tech/document-chatbot",
+    github: "https://github.com/dhruv-rathi-tech/DocMate",
     image: "/images/projects/docmate.png",
   },
   {
@@ -46,7 +46,7 @@ export const projects: Project[] = [
     description:
       "An agentic AI system powered by a Groq LLM that coordinates flight, hotel, weather, and route tools to build complete travel itineraries. It executes independent searches concurrently, processes and ranks candidate options against user constraints, and adaptively replans when the generated plan fails validation.",
     categories: ["AI/GenAI"],
-    technologies: ["Python", "Groq LLM", "Pydantic", "SerpApi", "Open-Meteo"],
+    technologies: ["Python", "Groq LLM", "Pydantic", "SerpApi", "RouteStack", "Open-Meteo"],
     highlights: [
       "LLM-powered agentic workflow with tool orchestration",
       "Concurrent API calls for flights, hotels, weather, and routes",
@@ -55,7 +55,7 @@ export const projects: Project[] = [
       "Reflection-based verification and adaptive replanning",
       "Deterministic validation of LLM-generated travel plans",
     ],
-    github: "https://github.com/dhruv-rathi-tech/agentic-trip-planner",
+    github: "https://github.com/dhruv-rathi-tech/TripPilot",
     image: "/images/projects/trippilot.png",
   },
   {
@@ -81,7 +81,8 @@ export const projects: Project[] = [
       { label: "AUC-ROC", value: "0.9748" },
       { label: "Test F1-Score", value: "0.94" },
     ],
-    github: "https://github.com/dhruv-rathi-tech/ai-image-detection",
+    github: "https://github.com/dhruv-rathi-tech/SynthLens",
+    demo: "https://synthlens.vercel.app",
     image: "/images/projects/synthlens.png",
   },
   {
@@ -105,7 +106,7 @@ export const projects: Project[] = [
       { label: "R² Score", value: "0.656" },
       { label: "RMSE", value: "~8 days" },
     ],
-    github: "https://github.com/dhruv-rathi-tech/invoice-payment-forecasting",
+    github: "https://github.com/dhruv-rathi-tech/PayCast",
     demo: "https://invoicepaymentforecasting.streamlit.app",
     image: "/images/projects/paycast.png",
   },
@@ -125,8 +126,8 @@ export const projects: Project[] = [
       "Razorpay payment gateway with server-side signature verification",
       "Structured route architecture with middleware layers",
     ],
-    github: "https://github.com/dhruv-rathi-tech/ecommerce-web",
-    demo: "https://shopease-web.up.railway.app/",
+    github: "https://github.com/dhruv-rathi-tech/ShopEase",
+    demo: "https://shopease-shop.onrender.com",
     image: "/images/projects/shopease.png",
   },
   {
@@ -147,7 +148,7 @@ export const projects: Project[] = [
       "Patient, doctor, and admin role portals",
       "OAuth2 authentication with JWT-based RBAC",
     ],
-    github: "https://github.com/dhruv-rathi-tech/healthcare-appointment-manager",
+    github: "https://github.com/dhruv-rathi-tech/MediDesk",
     demo: "https://medidesk-healthcare.vercel.app",
     image: "/images/projects/medidesk.png",
   },
@@ -168,7 +169,7 @@ export const projects: Project[] = [
       "Sensor anomaly detection and automated data-quality reporting",
       "CSV export for downstream analysis",
     ],
-    github: "https://github.com/dhruv-rathi-tech/sensor-data-analytics",
+    github: "https://github.com/dhruv-rathi-tech/SensorLens",
     demo: "https://sensor-data-analytics.streamlit.app",
     image: "/images/projects/sensorlens.png",
   },
@@ -188,7 +189,7 @@ export const projects: Project[] = [
       "Market-signal extraction from structured financial data",
       "Interactive dashboards with drill-down analysis and narrative insights",
     ],
-    github: "https://github.com/dhruv-rathi-tech/finrisk-engine",
+    github: "https://github.com/dhruv-rathi-tech/FinRisk",
     image: "/images/projects/finrisk.png",
   },
 ];

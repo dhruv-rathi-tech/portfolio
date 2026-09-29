@@ -18,7 +18,7 @@ new tools and architectures in AI and software engineering.`, // 208 words, matc
 };
 
 export const resumes = [
-  { label: "AI / GenAI Resume", file: "/resumes/Dhruv_Rathi_AI_Resume.pdf", primary: true },
-  { label: "Data Analyst Resume", file: "/resumes/Dhruv_Rathi_Analyst_Resume.pdf", primary: false },
-  { label: "Software / Full-Stack Resume", file: "/resumes/Dhruv_Rathi_SDE_Resume.pdf", primary: false },
+  { label: "AI / GenAI Resume", file: "/resumes/Dhruv Rathi_AI_Resume.pdf", primary: true },
+  { label: "Data Analyst Resume", file: "/resumes/Dhruv Rathi_Analyst_Resume.pdf", primary: false },
+  { label: "Software / Full-Stack Resume", file: "/resumes/Dhruv Rathi_SDE_Resume.pdf", primary: false },
 ];
